@@ -3,7 +3,7 @@ import userlogo from "../../assets/userlogo.svg";
 function UserInfo() {
   return (
     <div className="flex flex-row justify-between items-center px-10 py-4">
-      <div className="flex flex-row gap-8 items-start">
+      <div className="flex flex-row max-sm:flex-col gap-8 items-start">
         <div className="flex flex-row gap-4 items-center">
           <img src={userlogo} alt="userlogo" />
           <div className="flex flex-col text-[18px] font-semibold">

@@ -186,7 +186,7 @@ function ItemsSoldAnalytics() {
   ];
 
   return (
-    <div className="flex flex-row max-xl:flex-col justify-between gap-2 mt-2 mx-10 px-10 bg-[#ffffff] shadow-xl border-2 border-[#e5e5e5] rounded-[10px]">
+    <div className="flex flex-row max-xl:flex-col justify-between gap-2 mt-2 mx-10 max-sm:mx-2 px-10 max-sm:px-5 bg-[#ffffff] shadow-xl border-2 border-[#e5e5e5] rounded-[10px]">
       <div className="flex flex-col gap-2 px-4 py-4 w-2/5 max-xl:w-full">
         <div className="flex flex-row justify-between w-full pb-4">
           <span className="text-[#000000] font-semibold text-[16px]">
@@ -197,7 +197,7 @@ function ItemsSoldAnalytics() {
           </button>
         </div>
         <img src={worldmap} alt="worldmap" />
-        <div className="flex flex-row items-center gap-4 px-3 py-1 border-2 border-[#e5e5e5] rounded-full h-fit w-fit cursor-pointer">
+        <div className="flex flex-row items-center gap-2 px-1 py-1 border-2 border-[#e5e5e5] rounded-full h-fit w-fit cursor-pointer">
           {clientsupplier ? (
             <>
               <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">
@@ -254,7 +254,7 @@ function ItemsSoldAnalytics() {
           <span className="text-[#000000] font-semibold text-[16px]">
             Top Items Sold
           </span>
-          <div className="flex flex-row items-center gap-4 px-3 py-1 border-2 border-[#e5e5e5] rounded-full h-fit w-fit cursor-pointer">
+          <div className="flex flex-row items-center gap-2 px-1 py-1 border-2 border-[#e5e5e5] rounded-full h-fit w-fit cursor-pointer">
             {itemsoldmode ? (
               <>
                 <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">
@@ -308,7 +308,7 @@ function ItemsSoldAnalytics() {
           <span className="text-[#000000] font-semibold text-[16px]">
             Top Items Purchased
           </span>
-          <div className="flex flex-row items-center gap-4 px-3 py-1 border-2 border-[#e5e5e5] rounded-full h-fit w-fit cursor-pointer">
+          <div className="flex flex-row items-center gap-2 px-1 py-1 border-2 border-[#e5e5e5] rounded-full h-fit w-fit cursor-pointer">
             {itempurchasemode ? (
               <>
                 <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">

@@ -58,7 +58,7 @@ function ShipmentAnalytics() {
     },
   ];
   return (
-    <div className="mr-10 max-xl:ml-10 px-5 pt-4 mt-2 mb-4 bg-[#ffffff] shadow-xl border-2 border-[#e5e5e5] rounded-[10px] w-fit max-xl:w-fit flex flex-row max-md:flex-col gap-8">
+    <div className="mr-10 max-xl:ml-10 max-sm:ml-2 max-sm:mr-2 px-5 pt-4 mt-2 mb-4 bg-[#ffffff] shadow-xl border-2 border-[#e5e5e5] rounded-[10px] w-fit max-xl:w-fit flex flex-row max-md:flex-col gap-8">
       <div>
         <div className="flex flex-row justify-between items-center">
           <span className="text-[16px] font-bold text-[#000000]">
@@ -110,7 +110,7 @@ function ShipmentAnalytics() {
           ID: <span className="font-semibold text-[#636464]">{shipmentid}</span>
         </span>
         <img src={mapsdirection} alt="mapsdirection" />
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between max-sm:flex-col">
           {shipmentmoreDetails.map((more, index) => {
             const { id, name, detail } = more;
             return (

@@ -7,7 +7,7 @@ import UserInfo from "../components/dashboard/UserInfo";
 
 function DashBoard() {
   return (
-    <div className="bg-[#f7f9fb] h-full w-screen pl-24 pb-4">
+    <div className="bg-[#f7f9fb] h-full w-screen pl-24 max-sm:pl-0 pb-4">
       <Search />
       <UserInfo />
       <hr className="bg-[#e5e5e5] h-[1px] border-0" />

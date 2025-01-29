@@ -43,7 +43,7 @@ function PaymentInfo() {
     },
   ];
   return (
-    <div className="px-10 py-4 flex flex-row justify-between gap-4 max-xl:flex-wrap">
+    <div className="px-10 max-sm:px-2 py-4 flex flex-row justify-between gap-4 max-xl:flex-wrap">
       {payment.map((pay) => {
         const { id, name, amount, info, increase, decrease, icon } = pay;
         return (

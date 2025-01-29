@@ -1,4 +1,3 @@
-import { useState } from "react";
 import logo from "../assets/logo.svg";
 import menuicon1 from "../assets/menuicon1.svg";
 import menuicon2 from "../assets/menuicon2.svg";
@@ -12,8 +11,7 @@ import menuicon9 from "../assets/menuicon9.svg";
 import help from "../assets/help.svg";
 import settings from "../assets/settings.svg";
 
-function Sidebar() {
-  const [open, setopen] = useState(false);
+function SideBarMobile({ menubar, setmenubar }) {
   const menus = [
     { name: "3D Model", icon: menuicon1 },
     { name: "User Profile", icon: menuicon2 },
@@ -26,58 +24,48 @@ function Sidebar() {
     { name: "Code Development", icon: menuicon9 },
   ];
   return (
-    <div
-      className={`max-sm:hidden fixed bg-[#ffffff] h-full flex flex-col justify-between ${
-        open ? "w-60" : "w-24"
-      } duration-500 absolute z-10`}
-    >
+    <div className="fixed top-0 bg-[#ffffff] h-full flex flex-col justify-between w-60 duration-500 absolute z-10">
       <div>
         <div
-          className={`flex py-4 ${
-            open ? "justify-end pr-4" : "justify-center"
-          }`}
+          className="flex py-2 justify-end pr-4
+          "
         >
           <img
             src={logo}
             alt="logo"
             className="size-14 cursor-pointer"
-            onClick={() => setopen(!open)}
+            onClick={() => setmenubar(!menubar)}
           />
         </div>
         <div className="flex flex-col gap-2 relative">
           {menus?.map((menu, index) => (
             <div key={index}>
               <div
-                className={`flex items-center flex-row gap-2  ${
-                  open ? "bg-transparent px-4" : "justify-center"
-                }`}
+                className="flex items-center flex-row gap-2 bg-transparent px-4
+                "
               >
                 <img
                   src={menu?.icon}
                   alt={menu?.name}
                   className="size-12 py-2 size-12 cursor-pointer"
                 />
-                {open ? (
-                  <div className="font-ubuntu font-medium text-[14px] cursor-pointer">
-                    {menu?.name}
-                  </div>
-                ) : null}
+                <div className="font-ubuntu font-medium text-[14px] cursor-pointer">
+                  {menu?.name}
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
       <div
-        className={`flex flex-col ${
-          open ? "items-start ml-6" : "items-center"
-        } gap-4 mb-4`}
+        className="flex flex-row items-center
+        gap-4 mb-4 ml-6"
       >
         <img src={help} alt="help" className="size-10 cursor-pointer" />
-        <div className="w-full border-t border-gray-300"></div>
         <img src={settings} alt="settings" className="size-14 cursor-pointer" />
       </div>
     </div>
   );
 }
 
-export default Sidebar;
+export default SideBarMobile;

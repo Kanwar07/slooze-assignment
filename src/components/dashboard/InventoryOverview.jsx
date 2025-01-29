@@ -81,7 +81,7 @@ function InventoryOverview() {
   });
 
   return (
-    <div className="ml-10 px-10 pt-4 mt-2 mb-4 w-1/3 max-xl:w-fit bg-[#ffffff] shadow-xl border-2 border-[#e5e5e5] rounded-[10px]">
+    <div className="ml-10 max-sm:ml-2 max-sm:mr-2 px-10 max-sm:px-0 pt-4 mt-2 mb-4 w-1/3 max-xl:w-fit max-sm:px-5 bg-[#ffffff] shadow-xl border-2 border-[#e5e5e5] rounded-[10px]">
       <div className="flex flex-row justify-between">
         <div className="flex flex-col gap-2">
           <span className="text-[16px] font-bold text-[#000000]">
@@ -93,7 +93,7 @@ function InventoryOverview() {
           </span>
         </div>
 
-        <div className="flex flex-row items-center gap-4 px-3 py-1 border-2 border-[#e5e5e5] rounded-full h-fit cursor-pointer">
+        <div className="flex flex-row items-center gap-2 px-1 py-1 border-2 border-[#e5e5e5] rounded-full h-fit cursor-pointer">
           {mode ? (
             <>
               <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">
