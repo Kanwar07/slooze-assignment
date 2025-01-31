@@ -1,12 +1,15 @@
 import "./App.css";
 import Sidebar from "./components/SideBar";
+import Context from "./context/Context";
 import DashBoard from "./pages/DashBoard";
 
 function App() {
   return (
     <>
-      <Sidebar />
-      <DashBoard />
+      <Context>
+        <Sidebar />
+        <DashBoard />
+      </Context>
     </>
   );
 }

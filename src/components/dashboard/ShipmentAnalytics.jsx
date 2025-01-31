@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import destinationlogo from "../../assets/destinationlogo.svg";
 import startlogo from "../../assets/startlogo.svg";
 import arrowright from "../../assets/arrowright.svg";
 import mapsdirection from "../../assets/mapsdirection.svg";
 import filter from "../../assets/filter.svg";
+import { ContextData } from "../../context/Context";
 
 function ShipmentAnalytics() {
   const [shipmentid, setshipmentid] = useState("#003455MNP");
+
+  const { toggleColor } = useContext(ContextData);
+
   const shipmentDetails = [
     {
       shipmentID: "#003455MNP",
@@ -58,14 +62,19 @@ function ShipmentAnalytics() {
     },
   ];
   return (
-    <div className="mr-10 max-xl:ml-10 max-sm:ml-2 max-sm:mr-2 px-5 pt-4 mt-2 mb-4 bg-[#ffffff] shadow-xl border-2 border-[#e5e5e5] rounded-[10px] w-fit max-xl:w-fit flex flex-row max-md:flex-col gap-8">
+    <div
+      className={`${
+        toggleColor
+          ? "bg-[#000000] text-[#ffffff]"
+          : "bg-[#ffffff] text-[#7c7d7e]"
+      } mr-10 max-xl:ml-10 max-sm:ml-2 max-sm:mr-2 px-5 pt-4 mt-2 mb-4 shadow-xl border-2 border-[#e5e5e5] rounded-[10px] w-fit max-xl:w-fit flex flex-row max-md:flex-col gap-8`}
+    >
       <div>
         <div className="flex flex-row justify-between items-center">
-          <span className="text-[16px] font-bold text-[#000000]">
-            Shipment Analytics
-          </span>
-          <div className="text-[14px] font-semibold text-[#000000] bg-[#f7f9fb] flex flex-row gap-2 border border-[#e5e5e5] rounded-[10px] px-2 py-1">
-            <img src={filter} alt="filter" /> <span>FILTERS</span>
+          <span className="text-[16px] font-bold">Shipment Analytics</span>
+          <div className="text-[14px] font-semibold bg-[#f7f9fb] flex flex-row gap-2 border border-[#e5e5e5] rounded-[10px] px-2 py-1">
+            <img src={filter} alt="filter" />{" "}
+            <span className="text-[#000000]">FILTERS</span>
           </div>
         </div>
         <div className="h-[220px] overflow-y-scroll space-y-3 pr-2 my-5">
@@ -106,7 +115,7 @@ function ShipmentAnalytics() {
         </div>
       </div>
       <div className="flex flex-col justify-between mb-8 gap-2">
-        <span className="border-2 border-[#e5e5e5] rounded-full w-fit px-3 py-1 bg-[#f7f9fb]">
+        <span className="border-2 border-[#e5e5e5] rounded-full w-fit px-3 py-1 bg-[#f7f9fb] text-[#000000]">
           ID: <span className="font-semibold text-[#636464]">{shipmentid}</span>
         </span>
         <img src={mapsdirection} alt="mapsdirection" />
@@ -119,9 +128,7 @@ function ShipmentAnalytics() {
                   <span className="text-[12px] text-[#7c7d7e] font-normal">
                     {name}
                   </span>
-                  <span className="text-[14px] text-[#000000] font-semibold">
-                    {detail}
-                  </span>
+                  <span className="text-[14px] font-semibold">{detail}</span>
                 </div>
 
                 {index !== shipmentmoreDetails.length - 1 && (

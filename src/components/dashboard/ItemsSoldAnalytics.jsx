@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import worldmap from "../../assets/worldmap.svg";
+import { ContextData } from "../../context/Context";
 
 function ItemsSoldAnalytics() {
   const [clientsupplier, setclientsupplier] = useState(false);
   const [itemsoldmode, setitemsoldmode] = useState(false);
   const [itempurchasemode, setitempurchasemode] = useState(false);
+
+  const { selectedColor, toggleColor } = useContext(ContextData);
 
   const clientSuplier = [
     {
@@ -186,7 +189,13 @@ function ItemsSoldAnalytics() {
   ];
 
   return (
-    <div className="flex flex-row max-xl:flex-col justify-between gap-2 mt-2 mx-10 max-sm:mx-2 px-10 max-sm:px-5 bg-[#ffffff] shadow-xl border-2 border-[#e5e5e5] rounded-[10px]">
+    <div
+      className="flex flex-row max-xl:flex-col justify-between gap-2 mt-2 mx-10 max-sm:mx-2 px-10 max-sm:px-5 shadow-xl border-2 border-[#e5e5e5] rounded-[10px]"
+      style={{
+        backgroundColor: toggleColor ? "black" : "white",
+      }}
+    >
+      {" "}
       <div className="flex flex-col gap-2 px-4 py-4 w-2/5 max-xl:w-full">
         <div className="flex flex-row justify-between w-full pb-4">
           <span className="text-[#000000] font-semibold text-[16px]">
@@ -200,7 +209,12 @@ function ItemsSoldAnalytics() {
         <div className="flex flex-row items-center gap-2 px-1 py-1 border-2 border-[#e5e5e5] rounded-full h-fit w-fit cursor-pointer">
           {clientsupplier ? (
             <>
-              <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">
+              <span
+                className="px-3 py-1 rounded-full text-[#ffffff] text-[12px]"
+                style={{
+                  backgroundColor: selectedColor,
+                }}
+              >
                 SUPPLIERS
               </span>
               <span
@@ -218,13 +232,22 @@ function ItemsSoldAnalytics() {
               >
                 SUPPLIERS
               </span>
-              <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">
+              <span
+                className="px-3 py-1 rounded-full text-[#ffffff] text-[12px]"
+                style={{
+                  backgroundColor: selectedColor,
+                }}
+              >
                 CLIENTS
               </span>
             </>
           )}
         </div>
-        <div className="flex flex-col h-[200px] overflow-y-scroll space-y-3 gap-2 mt-5">
+        <div
+          className={`flex flex-col h-[200px] overflow-y-scroll space-y-3 gap-2 mt-5 ${
+            toggleColor ? "bg-[#ffffff] rounded-[10px]" : ""
+          }`}
+        >
           {clientSuplier.map((item) => {
             const { id, name, unitsPrice, winloss, orders } = item;
             return (
@@ -257,7 +280,12 @@ function ItemsSoldAnalytics() {
           <div className="flex flex-row items-center gap-2 px-1 py-1 border-2 border-[#e5e5e5] rounded-full h-fit w-fit cursor-pointer">
             {itemsoldmode ? (
               <>
-                <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">
+                <span
+                  className="px-3 py-1 rounded-full text-[#ffffff] text-[12px]"
+                  style={{
+                    backgroundColor: selectedColor,
+                  }}
+                >
                   Value
                 </span>
                 <span
@@ -275,14 +303,23 @@ function ItemsSoldAnalytics() {
                 >
                   Value
                 </span>
-                <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">
+                <span
+                  className="px-3 py-1 rounded-full text-[#ffffff] text-[12px]"
+                  style={{
+                    backgroundColor: selectedColor,
+                  }}
+                >
                   Vol.
                 </span>
               </>
             )}
           </div>
         </div>
-        <div className="flex flex-col h-[460px] overflow-y-scroll space-y-3 gap-2 mt-5">
+        <div
+          className={`flex flex-col h-[460px] overflow-y-scroll space-y-3 gap-2 mt-5 ${
+            toggleColor ? "bg-[#ffffff] rounded-[10px]" : ""
+          }`}
+        >
           {topitemssold.map((item) => {
             const { id, name, units } = item;
             return (
@@ -311,7 +348,12 @@ function ItemsSoldAnalytics() {
           <div className="flex flex-row items-center gap-2 px-1 py-1 border-2 border-[#e5e5e5] rounded-full h-fit w-fit cursor-pointer">
             {itempurchasemode ? (
               <>
-                <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">
+                <span
+                  className="px-3 py-1 rounded-full text-[#ffffff] text-[12px]"
+                  style={{
+                    backgroundColor: selectedColor,
+                  }}
+                >
                   Vol.
                 </span>
                 <span
@@ -329,14 +371,23 @@ function ItemsSoldAnalytics() {
                 >
                   Vol.
                 </span>
-                <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">
+                <span
+                  className="px-3 py-1 rounded-full text-[#ffffff] text-[12px]"
+                  style={{
+                    backgroundColor: selectedColor,
+                  }}
+                >
                   Value
                 </span>
               </>
             )}
           </div>
         </div>
-        <div className="flex flex-col h-[460px] overflow-y-scroll space-y-3 gap-2 mt-5">
+        <div
+          className={`flex flex-col h-[460px] overflow-y-scroll space-y-3 gap-2 mt-5 ${
+            toggleColor ? "bg-[#ffffff] rounded-[10px]" : ""
+          }`}
+        >
           {topitemspurchase.map((item) => {
             const { id, name, price } = item;
             return (

@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import paymenticon1 from "../../assets/paymenticon1.svg";
 import paymenticon2 from "../../assets/paymenticon2.svg";
 import paymenticon3 from "../../assets/paymenticon3.svg";
 import paymenticon4 from "../../assets/paymenticon4.svg";
+import { ContextData } from "../../context/Context";
 
 function PaymentInfo() {
+  const { toggleColor } = useContext(ContextData);
   const payment = [
     {
       id: 1,
@@ -42,6 +45,9 @@ function PaymentInfo() {
       icon: paymenticon4,
     },
   ];
+
+  const { selectedColor } = useContext(ContextData);
+
   return (
     <div className="px-10 max-sm:px-2 py-4 flex flex-row justify-between gap-4 max-xl:flex-wrap">
       {payment.map((pay) => {
@@ -49,14 +55,21 @@ function PaymentInfo() {
         return (
           <div
             key={id}
-            className="bg-[#ffffff] shadow-xl border-2 border-[#e5e5e5] flex-1 px-4 py-3 flex flex-row justify-between gap-4 items-start rounded-[10px] cursor-pointer hover:scale-105 hover:duration-500 hover:ease-in-out transition-transform"
+            className={`${
+              toggleColor ? "bg-[#000000]" : "bg-[#ffffff]"
+            } shadow-xl border-2 border-[#e5e5e5] flex-1 px-4 py-3 flex flex-row justify-between gap-4 items-start rounded-[10px] cursor-pointer hover:scale-105 hover:duration-500 hover:ease-in-out transition-transform`}
           >
             <div>
               <span className="text-[16px] font-normal text-[#7c7d7e]">
                 {name}
               </span>
               <div className="flex flex-row items-center gap-2">
-                <span className="text-[26px] text-[#4F45E4] font-bold">
+                <span
+                  className="text-[26px] font-bold"
+                  style={{
+                    color: selectedColor,
+                  }}
+                >
                   {amount}
                 </span>
                 <span className="text-[#19AC59] font-semibold text-[10px]">

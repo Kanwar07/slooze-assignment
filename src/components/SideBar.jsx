@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../assets/logo.svg";
 import menuicon1 from "../assets/menuicon1.svg";
 import menuicon2 from "../assets/menuicon2.svg";
@@ -9,11 +9,13 @@ import menuicon6 from "../assets/menuicon6.svg";
 import menuicon7 from "../assets/menuicon7.svg";
 import menuicon8 from "../assets/menuicon8.svg";
 import menuicon9 from "../assets/menuicon9.svg";
-import help from "../assets/help.svg";
 import settings from "../assets/settings.svg";
+import { ContextData } from "../context/Context";
 
 function Sidebar() {
   const [open, setopen] = useState(false);
+  const { toggleColor } = useContext(ContextData);
+
   const menus = [
     { name: "3D Model", icon: menuicon1 },
     { name: "User Profile", icon: menuicon2 },
@@ -27,7 +29,9 @@ function Sidebar() {
   ];
   return (
     <div
-      className={`max-sm:hidden fixed bg-[#ffffff] h-full flex flex-col justify-between ${
+      className={`max-sm:hidden fixed ${
+        toggleColor ? "bg-[#000000]" : "bg-[#ffffff]"
+      } h-full flex flex-col justify-between ${
         open ? "w-60" : "w-24"
       } duration-500 absolute z-10`}
     >
@@ -49,8 +53,8 @@ function Sidebar() {
             <div key={index}>
               <div
                 className={`flex items-center flex-row gap-2  ${
-                  open ? "bg-transparent px-4" : "justify-center"
-                }`}
+                  open ? "px-4" : "justify-center"
+                } ${toggleColor ? "bg-[#ffffff] mx-6 rounded-[10px]" : ""}`}
               >
                 <img
                   src={menu?.icon}
@@ -72,8 +76,6 @@ function Sidebar() {
           open ? "items-start ml-6" : "items-center"
         } gap-4 mb-4`}
       >
-        <img src={help} alt="help" className="size-10 cursor-pointer" />
-        <div className="w-full border-t border-gray-300"></div>
         <img src={settings} alt="settings" className="size-14 cursor-pointer" />
       </div>
     </div>

@@ -1,9 +1,11 @@
 import ReactApexChart from "react-apexcharts";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ContextData } from "../../context/Context";
 
 function InventoryOverview() {
+  const { selectedColor, toggleColor } = useContext(ContextData);
   const [mode, setmode] = useState(false);
-  const [dailystate] = useState({
+  const [dailystate, setDailystate] = useState({
     series: [
       {
         name: "Sales",
@@ -25,27 +27,37 @@ function InventoryOverview() {
           horizontal: false,
         },
       },
-      colors: ["#4F45E4", "#d6d4f5"],
+      colors: [selectedColor || "#3498db", selectedColor || "#3498db"],
       dataLabels: {
         enabled: false,
       },
       xaxis: {
-        categories: [
-          "Week1",
-          "Week2",
-          "Week3",
-          "Week4",
-          "Week5",
-          "Week6",
-          "Week7",
-        ],
+        categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        labels: {
+          style: {
+            colors: toggleColor ? "#ffffff" : "#000000",
+          },
+        },
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: toggleColor ? "#ffffff" : "#000000",
+          },
+        },
       },
       legend: {
         horizontalAlign: "right",
+        labels: {
+          style: {
+            colors: toggleColor ? "#ffffff" : "#000000",
+          },
+        },
       },
     },
   });
-  const [weeklystate] = useState({
+
+  const [weeklystate, setWeeklyState] = useState({
     series: [
       {
         name: "Sales",
@@ -67,27 +79,118 @@ function InventoryOverview() {
           horizontal: false,
         },
       },
-      colors: ["#4F45E4", "#d6d4f5"],
+      colors: [selectedColor || "#3498db", selectedColor || "#3498db"],
       dataLabels: {
         enabled: false,
       },
       xaxis: {
         categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        labels: {
+          style: {
+            colors: toggleColor ? "#ffffff" : "#000000",
+          },
+        },
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: toggleColor ? "#ffffff" : "#000000",
+          },
+        },
       },
       legend: {
         horizontalAlign: "right",
+        labels: {
+          style: {
+            colors: toggleColor ? "#ffffff" : "#000000",
+          },
+        },
       },
     },
   });
 
+  useEffect(() => {
+    setDailystate((prevState) => ({
+      ...prevState,
+      options: {
+        ...prevState.options,
+        colors: [selectedColor || "#3498db", selectedColor || "#3498db"],
+        xaxis: {
+          ...prevState.options.xaxis,
+          categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          labels: {
+            style: {
+              colors: toggleColor ? "#ffffff" : "#000000",
+            },
+          },
+        },
+        yaxis: {
+          ...prevState.options.yaxis,
+          labels: {
+            style: {
+              colors: toggleColor ? "#ffffff" : "#000000",
+            },
+          },
+        },
+        legend: {
+          ...prevState.options.legend,
+          horizontalAlign: "right",
+          labels: {
+            style: {
+              colors: toggleColor ? "#ffffff" : "#000000",
+            },
+          },
+        },
+      },
+    }));
+
+    setWeeklyState((prevState) => ({
+      ...prevState,
+      options: {
+        ...prevState.options,
+        colors: [selectedColor || "#3498db", selectedColor || "#3498db"],
+        xaxis: {
+          ...prevState.options.xaxis,
+          categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          labels: {
+            style: {
+              colors: toggleColor ? "#ffffff" : "#000000",
+            },
+          },
+        },
+        yaxis: {
+          ...prevState.options.yaxis,
+          labels: {
+            style: {
+              colors: toggleColor ? "#ffffff" : "#000000",
+            },
+          },
+        },
+        legend: {
+          ...prevState.options.legend,
+          horizontalAlign: "right",
+          labels: {
+            style: {
+              colors: toggleColor ? "#ffffff" : "#000000",
+            },
+          },
+        },
+      },
+    }));
+  }, [selectedColor, toggleColor]);
+
   return (
-    <div className="ml-10 max-sm:ml-2 max-sm:mr-2 px-10 max-sm:px-0 pt-4 mt-2 mb-4 w-1/3 max-xl:w-fit max-sm:px-5 bg-[#ffffff] shadow-xl border-2 border-[#e5e5e5] rounded-[10px]">
+    <div
+      className={`${
+        toggleColor
+          ? "bg-[#000000] text-[#ffffff]"
+          : "bg-[#ffffff] text-[#000000]"
+      } ml-10 max-sm:ml-2 max-sm:mr-2 px-10 max-sm:px-0 pt-4 mt-2 mb-4 w-1/3 max-xl:w-fit max-sm:px-5 shadow-xl border-2 border-[#e5e5e5] rounded-[10px]`}
+    >
       <div className="flex flex-row justify-between">
         <div className="flex flex-col gap-2">
-          <span className="text-[16px] font-bold text-[#000000]">
-            Inventory Overview
-          </span>
-          <span className="text-[12px] font-normal text-[#7c7d7e]">
+          <span className="text-[16px] font-bold ">Inventory Overview</span>
+          <span className="text-[12px] font-normal">
             In-Stock Products:{" "}
             <span className="font-semibold">3,200 Units</span>
           </span>
@@ -96,7 +199,12 @@ function InventoryOverview() {
         <div className="flex flex-row items-center gap-2 px-1 py-1 border-2 border-[#e5e5e5] rounded-full h-fit cursor-pointer">
           {mode ? (
             <>
-              <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">
+              <span
+                className="px-3 py-1 rounded-full text-[12px]"
+                style={{
+                  backgroundColor: selectedColor,
+                }}
+              >
                 DAILY
               </span>
               <span
@@ -114,7 +222,12 @@ function InventoryOverview() {
               >
                 DAILY
               </span>
-              <span className="px-3 py-1 rounded-full text-[#ffffff] bg-[#4F45E4] text-[12px]">
+              <span
+                className="px-3 py-1 rounded-full text-[#ffffff] text-[12px]"
+                style={{
+                  backgroundColor: selectedColor,
+                }}
+              >
                 WEEKLY
               </span>
             </>
